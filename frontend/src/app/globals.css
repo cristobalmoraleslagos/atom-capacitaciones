@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ── ATOM Capacitaciones — Design System ──────────────────────────────────── */
+
+@theme {
+  --color-atom-red:       #E82429;
+  --color-atom-red-dark:  #C01C20;
+  --color-atom-red-light: #FF4A4F;
+  --color-atom-cyan:      #00C8E0;
+  --color-atom-cyan-dark: #009DB0;
+  --color-atom-dark:      #1E1E1E;
+  --color-atom-gray:      #3D3D3D;
+  --color-atom-gray-md:   #6B7280;
+  --color-atom-gray-light:#F4F4F6;
+  --color-atom-white:     #FFFFFF;
+
+  --font-heading: 'Rajdhani', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+
+:root {
+  --sidebar-w: 260px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: #F4F4F6;
+  color: #1E1E1E;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F0F0F0; }
+::-webkit-scrollbar-thumb { background: #C0C0C0; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #E82429; }
+
+/* ── Utility classes ─────────────────────────────────────────────────────── */
+.atom-gradient {
+  background: linear-gradient(135deg, #E82429 0%, #C01C20 100%);
+}
+
+.atom-gradient-cyan {
+  background: linear-gradient(135deg, #00C8E0 0%, #009DB0 100%);
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  padding: 1.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  padding: .25rem .75rem;
+  border-radius: 9999px;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+.badge-red   { background:#FEE2E2; color:#E82429; }
+.badge-cyan  { background:#CFFAFE; color:#0891B2; }
+.badge-green { background:#DCFCE7; color:#16A34A; }
+.badge-gray  { background:#F3F4F6; color:#6B7280; }
+.badge-amber { background:#FEF3C7; color:#D97706; }
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .65rem 1rem;
+  border-radius: 8px;
+  font-size: .875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.75);
+  transition: all .2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sidebar-item:hover, .sidebar-item.active {
+  background: rgba(255,255,255,.12);
+  color: #fff;
+}
+
+.sidebar-item.active {
+  background: rgba(232,36,41,.85);
+  color: #fff;
+}
+
+/* ── Table ───────────────────────────────────────────────────────────────── */
+.atom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+}
+
+.atom-table th {
+  background: #F4F4F6;
+  padding: .75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #6B7280;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  border-bottom: 2px solid #E5E7EB;
+}
+
+.atom-table td {
+  padding: .85rem 1rem;
+  border-bottom: 1px solid #F0F0F0;
+  color: #374151;
+}
+
+.atom-table tr:hover td { background: #FAFAFA; }
+
+/* ── Inputs ──────────────────────────────────────────────────────────────── */
+.atom-input {
+  width: 100%;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 8px;
+  padding: .6rem .875rem;
+  font-size: .875rem;
+  font-family: var(--font-body);
+  transition: border-color .2s;
+  background: white;
+  color: #1E1E1E;
+}
+
+.atom-input:focus {
+  outline: none;
+  border-color: #E82429;
+  box-shadow: 0 0 0 3px rgba(232,36,41,.1);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: .875rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  transition: all .2s;
+}
+
+.btn-primary {
+  background: #E82429;
+  color: white;
+}
+.btn-primary:hover { background: #C01C20; }
+
+.btn-cyan {
+  background: #00C8E0;
+  color: white;
+}
+.btn-cyan:hover { background: #009DB0; }
+
+.btn-outline {
+  background: transparent;
+  color: #E82429;
+  border: 1.5px solid #E82429;
+}
+.btn-outline:hover { background: #FEE2E2; }
+
+.btn-ghost {
+  background: #F4F4F6;
+  color: #374151;
+}
+.btn-ghost:hover { background: #E5E7EB; }
+
+/* ── Stat cards ──────────────────────────────────────────────────────────── */
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* ── Sidebar active indicator ────────────────────────────────────────────── */
+.sidebar-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: #00C8E0;
+  border-radius: 0 2px 2px 0;
+}
+
+.sidebar-item { position: relative; }
