@@ -101,6 +101,31 @@ export default function LoginPage() {
             </p>
           </div>
 
+          {/* Banner modo demo */}
+          <div style={{
+            background:'rgba(0,200,224,.1)', border:'1px solid rgba(0,200,224,.25)',
+            borderRadius:10, padding:'.875rem 1rem', marginBottom:'.5rem',
+          }}>
+            <p style={{ fontSize:'.78rem', fontWeight:700, color:'#00C8E0', marginBottom:4 }}>
+              🧪 Modo demo activo
+            </p>
+            <p style={{ fontSize:'.75rem', color:'#9CA3AF', lineHeight:1.5 }}>
+              <span style={{ color:'#E5E7EB' }}>Email:</span> admin@atomcapacitaciones.cl<br/>
+              <span style={{ color:'#E5E7EB' }}>Contraseña:</span> Atom2026!
+            </p>
+            <button
+              type="button"
+              onClick={() => { setEmail('admin@atomcapacitaciones.cl'); setPassword('Atom2026!'); }}
+              style={{
+                marginTop:'.5rem', fontSize:'.72rem', fontWeight:600,
+                color:'#00C8E0', background:'none', border:'none', cursor:'pointer',
+                padding:0, textDecoration:'underline',
+              }}
+            >
+              Autocompletar credenciales →
+            </button>
+          </div>
+
           <form onSubmit={handleSubmit} style={{ display:'flex', flexDirection:'column', gap:'1.25rem' }}>
             <div>
               <label style={{ display:'block', fontSize:'.8rem', fontWeight:600, color:'#D1D5DB', marginBottom:6 }}>
