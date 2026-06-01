@@ -1,0 +1,143 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  FINANCE
+  PROFESSOR
+  LOBBYIST
+  SOCIAL_MANAGER
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(PROFESSOR)
+  courses   Course[]
+  minutes   Minute[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FinanceRecord {
+  id          String   @id @default(uuid())
+  period      String
+  revenue     Float
+  expenses    Float
+  netMargin   Float
+  description String?
+  generatedBy String
+  createdAt   DateTime @default(now())
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  name        String
+  program     String?
+  totalHours  Int
+  startDate   DateTime?
+  endDate     DateTime?
+  professorId String
+  professor   User     @relation(fields: [professorId], references: [id])
+  grades      Grade[]
+  attendance  Attendance[]
+  createdAt   DateTime @default(now())
+}
+
+model Grade {
+  id          String  @id @default(uuid())
+  studentId   String
+  studentName String
+  scores      Json    // [{ label: "Prueba 1", score: 5.5, weight: 0.3 }, ...]
+  finalGrade  Float
+  courseId    String
+  course      Course  @relation(fields: [courseId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model Attendance {
+  id          String   @id @default(uuid())
+  studentId   String
+  studentName String
+  date        DateTime
+  present     Boolean
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id])
+}
+
+model SocialMetrics {
+  id                String   @id @default(uuid())
+  platform          String   // instagram, facebook, linkedin
+  followers         Int
+  followersLastWeek Int      @default(0)
+  percentageGrowth  Float    @default(0)
+  reach             Int      @default(0)
+  engagement        Float    @default(0)
+  createdAt         DateTime @default(now())
+}
+
+model WeeklyContent {
+  id        String   @id @default(uuid())
+  week      DateTime
+  theme     String
+  slogan    String
+  phrases   Json     // string[]
+  topics    Json     // string[]
+  platform  String?
+  metricsId String?
+  sent      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Campaign {
+  id          String   @id @default(uuid())
+  name        String
+  platform    String
+  startDate   DateTime
+  endDate     DateTime?
+  budget      Float?
+  status      String   @default("ACTIVE")
+  impressions Int      @default(0)
+  clicks      Int      @default(0)
+  conversions Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Tender {
+  id          String   @id @default(uuid())
+  externalId  String   @unique
+  name        String
+  entity      String
+  type        String?
+  status      String
+  amount      Float?
+  publishDate DateTime?
+  closeDate   DateTime?
+  url         String?
+  keywords    Json     // string[] matched keywords
+  notified    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Minute {
+  id           String   @id @default(uuid())
+  entity       String
+  subject      String
+  date         DateTime
+  participants Json     // string[]
+  agreements   Json     // { text: string, responsible: string, deadline: DateTime }[]
+  status       String   @default("PENDING")
+  alertDate    DateTime?
+  alertSent    Boolean  @default(false)
+  lobbyistId   String
+  lobbyist     User     @relation(fields: [lobbyistId], references: [id])
+  createdAt    DateTime @default(now())
+}
