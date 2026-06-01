@@ -1,10 +1,7 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: path.resolve(__dirname),
-  },
+  // Sin Turbopack — más estable en Node v24 + Windows
 };
 
 export default nextConfig;
